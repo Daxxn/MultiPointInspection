@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using DataModels;
 using MultiPointInspection.Models;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace MultiPointInspection.ViewModels
         private IWindowManager _windowManager;
 		private IEventAggregator _eventAggregator;
 
-        private RepairOrderModel _repairOrderModel;
+		private BindableCollection<RepairOrder> _repairOrderList;
+		private RepairOrder _selectedRepairOrder;
 		#endregion
 
 		#region - Constructors
@@ -23,23 +25,73 @@ namespace MultiPointInspection.ViewModels
 			_windowManager = windowManager;
 			_eventAggregator = eventAggregator;
 			_eventAggregator.Subscribe(this);
-		}
-		#endregion
 
-		#region - Methods
+            RepairOrderList = new BindableCollection<RepairOrder>();
 
-		#endregion
+            #region TESTING
+            RepairOrderList.Add(new RepairOrder()
+            {
+                RepairOrderNumber = 123456,
+                Vehicle = new VehicleData()
+                {
+                    VIN = "VIN Test",
+                    Year = 2018,
+                    Make = "Toyota",
+                    Model = "RAV4"
+                },
+                Inspection = new Inspection()
+                {
+                    Components = new List<Component>()
+                    {
+                        new Component("Brakes"),
+                        new Component("Tread Depth"),
+                        new Component("Engine Filter")
+                    },
 
-		#region - Full Properties
-        public RepairOrderModel RepairOrderModel
+                },
+                Status = new RepairStatus()
+                {
+                    Name = "In Progress",
+                    ID = 1
+                },
+                Repairs = new List<RepairAction>()
+                {
+                    new RepairAction()
+                    {
+                        RepairName = "Oil change and tire rotate.",
+                        ActionID = 10,
+                        Description = "Replace engine oil and filter, rotate tires, check tire pressure, and complete multipoint inspection."
+                    }
+                }
+            });
+            #endregion
+        }
+        #endregion
+
+        #region - Methods
+
+        #endregion
+
+        #region - Full Properties
+        public BindableCollection<RepairOrder> RepairOrderList
         {
-            get { return _repairOrderModel; }
+            get { return _repairOrderList; }
             set
             {
-                _repairOrderModel = value;
-                NotifyOfPropertyChange(() => RepairOrderModel);
+				_repairOrderList = value;
+                NotifyOfPropertyChange(() => RepairOrderList);
             }
         }
+
+		public RepairOrder SelectedRepairOrder
+        {
+			get { return _selectedRepairOrder; }
+			set
+			{
+				_selectedRepairOrder = value;
+				NotifyOfPropertyChange(() => SelectedRepairOrder);
+			}
+		}
 		#endregion
 	}
 }

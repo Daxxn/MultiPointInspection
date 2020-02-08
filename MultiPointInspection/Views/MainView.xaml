@@ -19,10 +19,14 @@
 
         <TextBlock FontSize="16" Grid.Column="0" Grid.Row="0">All Repair Orders</TextBlock>
         
-        <DataGrid x:Name="RepairOrderList" AutoGenerateColumns="False" SelectedItem="SelectedRepairOrder"
+        <DataGrid x:Name="RepairOrderList" AutoGenerateColumns="False" SelectedItem="{Binding Path=SelectedRepairOrder}"
                   Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="RO Number" Binding="{Binding Path=RepairOrderNumber}"/>
+                <DataGridTextColumn Header="RO" Binding="{Binding Path=RepairOrderNumber}"/>
+                <DataGridTextColumn Header="Year" Binding="{Binding Path=Vehicle.Year}"/>
+                <DataGridTextColumn Header="Make" Binding="{Binding Path=Vehicle.Make}"/>
+                <DataGridTextColumn Header="Model" Binding="{Binding Path=Vehicle.Model}"/>
+                <DataGridTextColumn Header="Color" Binding="{Binding Path=Vehicle.Color}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

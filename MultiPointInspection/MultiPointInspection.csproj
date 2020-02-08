@@ -72,6 +72,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="EventModels\ViewCurrentROTabEvent.cs" />
+    <Compile Include="EventModels\ViewInspectionTabEvent.cs" />
     <Compile Include="Models\RepairOrderModel.cs" />
     <Compile Include="ViewModels\CurrentROViewModel.cs" />
     <Compile Include="ViewModels\InspectionViewModel.cs" />

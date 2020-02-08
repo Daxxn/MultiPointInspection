@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using DataModels;
+using MultiPointInspection.EventModels;
 
 namespace MultiPointInspection.ViewModels
 {
-    public class CurrentROViewModel : Screen
+    public class CurrentROViewModel : Screen, IHandle<ViewCurrentROTabEvent>
     {
         #region - Fields
         private IWindowManager _windowManager;
         private IEventAggregator _eventAggregator;
+
+        private RepairOrder _currentRO;
         #endregion
 
         #region - Constructors
@@ -24,11 +28,21 @@ namespace MultiPointInspection.ViewModels
         #endregion
 
         #region - Methods
-
+        public void Handle(ViewCurrentROTabEvent message)
+        {
+            CurrentRepairOrder = message.RO;
+        }
         #endregion
 
         #region - Properties
-
+        public RepairOrder CurrentRepairOrder
+        {
+            get { return _currentRO; }
+            set
+            {
+                _currentRO = value;
+            }
+        }
         #endregion
     }
 }

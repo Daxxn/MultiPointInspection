@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using MultiPointInspection.EventModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,11 +44,13 @@ namespace MultiPointInspection.ViewModels
 
         public void TabCurrentView()
         {
+            _eventAggregator.PublishOnUIThread(new ViewCurrentROTabEvent(MainViewModel.SelectedRepairOrder));
             ActivateItem(CurrentROViewModel);
         }
 
         public void TabInspectionView()
         {
+            _eventAggregator.PublishOnUIThread(new ViewInspectionTabEvent(MainViewModel.SelectedRepairOrder));
             ActivateItem(InspectionViewModel);
         }
         #endregion
