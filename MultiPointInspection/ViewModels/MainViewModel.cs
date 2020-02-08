@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using MultiPointInspection.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,11 @@ namespace MultiPointInspection.ViewModels
 {
     public class MainViewModel : Screen
 	{
-		#region - Fields & Properties
-		private IWindowManager _windowManager;
+        #region - Fields & Properties
+        private IWindowManager _windowManager;
 		private IEventAggregator _eventAggregator;
+
+        private RepairOrderModel _repairOrderModel;
 		#endregion
 
 		#region - Constructors
@@ -28,7 +31,15 @@ namespace MultiPointInspection.ViewModels
 		#endregion
 
 		#region - Full Properties
-
+        public RepairOrderModel RepairOrderModel
+        {
+            get { return _repairOrderModel; }
+            set
+            {
+                _repairOrderModel = value;
+                NotifyOfPropertyChange(() => RepairOrderModel);
+            }
+        }
 		#endregion
 	}
 }

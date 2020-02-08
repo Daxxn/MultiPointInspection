@@ -4,9 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MultiPointInspection.Views"
-             mc:Ignorable="d" Background="Blue"
+             mc:Ignorable="d" Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="16" Grid.Column="0" Grid.Row="0">All Repair Orders</TextBlock>
+        
+        <DataGrid x:Name="RepairOrderList" AutoGenerateColumns="False" SelectedItem="SelectedRepairOrder"
+                  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="RO Number" Binding="{Binding Path=RepairOrderNumber}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

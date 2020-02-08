@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultiPointInspection.Views"
         mc:Ignorable="d"
-        Title="MPI" Height="450" Width="800">
+        Title="MPI" Height="450" Width="800" WindowState="Maximized">
     <Grid>
-        <ContentControl x:Name="ActiveItem"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="File"/>
+        </Menu>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1">
+            <Button x:Name="TabMainView">Repair Orders</Button>
+            <Button x:Name="TabCurrentView">Current</Button>
+            <Button x:Name="TabInspectionView">Inspection</Button>
+        </StackPanel>
+
+        <ContentControl x:Name="ActiveItem" Grid.Row="2"/>
     </Grid>
 </Window>

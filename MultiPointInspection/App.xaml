@@ -9,6 +9,15 @@
                     <local:Bootstrapper x:Key="Bootstrapper" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type Button}" x:Key="TabSelected">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="AliceBlue"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
