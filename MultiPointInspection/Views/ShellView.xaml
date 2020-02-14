@@ -1,29 +1,33 @@
 ﻿<Window x:Class="MultiPointInspection.Views.ShellView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MultiPointInspection.Views"
-        mc:Ignorable="d"
-        Title="MPI" Height="450" Width="800" WindowState="Maximized">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:MultiPointInspection.Views"
+		xmlns:Converters="clr-namespace:MultiPointInspection.ValueConverters"
+		mc:Ignorable="d"
+		Title="MPI" Height="450" Width="800" WindowState="Maximized">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
 
-        <Menu Grid.Row="0">
-            <MenuItem Header="File"/>
+		<Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="Save"/>
+            </MenuItem>
+            <MenuItem Header="Create" x:Name="CreateRO"/>
         </Menu>
 
-        <StackPanel Orientation="Horizontal"
-                    Grid.Row="1">
-            <Button x:Name="TabMainView">Repair Orders</Button>
-            <Button x:Name="TabCurrentView">Current</Button>
-            <Button x:Name="TabInspectionView">Inspection</Button>
-        </StackPanel>
+		<StackPanel Orientation="Horizontal"
+					Grid.Row="1">
+			<Button x:Name="TabMainView" >Repair Orders</Button>
+			<Button x:Name="TabCurrentView">Current</Button>
+			<Button x:Name="TabInspectionView" Style="{StaticResource Tab_Base}">Inspection</Button>
+		</StackPanel>
 
-        <ContentControl x:Name="ActiveItem" Grid.Row="2"/>
-    </Grid>
+		<ContentControl x:Name="ActiveItem" Grid.Row="2"/>
+	</Grid>
 </Window>

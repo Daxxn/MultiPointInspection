@@ -72,13 +72,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Enums\SelectedTab.cs" />
     <Compile Include="EventModels\ViewCurrentROTabEvent.cs" />
     <Compile Include="EventModels\ViewInspectionTabEvent.cs" />
     <Compile Include="Models\RepairOrderModel.cs" />
+    <Compile Include="ValueConverters\BoolToColorConverter.cs" />
+    <Compile Include="ValueConverters\BoolToVisibleConverter.cs" />
+    <Compile Include="ViewModels\CreateRepairOrderViewModel.cs" />
     <Compile Include="ViewModels\CurrentROViewModel.cs" />
     <Compile Include="ViewModels\InspectionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Views\CreateRepairOrderView.xaml.cs">
+      <DependentUpon>CreateRepairOrderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CurrentROView.xaml.cs">
       <DependentUpon>CurrentROView.xaml</DependentUpon>
     </Compile>
@@ -121,6 +128,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="ResourceDictionaries\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateRepairOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CurrentROView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

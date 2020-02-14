@@ -16,6 +16,8 @@ namespace MultiPointInspection.ViewModels
         private IEventAggregator _eventAggregator;
 
         private RepairOrder _currentRO;
+        private BindableCollection<RepairAction> _repairDisplay;
+        private RepairAction _selectedRepair;
         #endregion
 
         #region - Constructors
@@ -31,6 +33,10 @@ namespace MultiPointInspection.ViewModels
         public void Handle(ViewCurrentROTabEvent message)
         {
             CurrentRepairOrder = message.RO;
+            if (CurrentRepairOrder != null)
+            {
+                RepairDisplay = new BindableCollection<RepairAction>(CurrentRepairOrder.Repairs);
+            }
         }
         #endregion
 
@@ -41,6 +47,27 @@ namespace MultiPointInspection.ViewModels
             set
             {
                 _currentRO = value;
+                NotifyOfPropertyChange(() => CurrentRepairOrder);
+            }
+        }
+
+        public BindableCollection<RepairAction> RepairDisplay
+        {
+            get { return _repairDisplay; }
+            set
+            {
+                _repairDisplay = value;
+                NotifyOfPropertyChange(() => RepairDisplay);
+            }
+        }
+
+        public RepairAction SelectedRepair
+        {
+            get { return _selectedRepair; }
+            set
+            {
+                _selectedRepair = value;
+                NotifyOfPropertyChange(() => SelectedRepair);
             }
         }
         #endregion
