@@ -18,6 +18,10 @@
         <Setter Property="Padding" Value="4,0,4,0"/>
     </Style>
 
+    <Style TargetType="Border" x:Key="key">
+        <Setter Property="BorderBrush" Value="white"/>
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="CurrROView_Header">
         <Setter Property="Padding" Value="0,0,2,1"/>
     </Style>

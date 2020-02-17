@@ -44,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\BaseInspectionModel.cs" />
+    <Compile Include="Json\InspectionModel.cs" />
+    <Compile Include="Json\JsonController.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\Inspect.cs" />
     <Compile Include="Models\Inspection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RepairAction.cs" />

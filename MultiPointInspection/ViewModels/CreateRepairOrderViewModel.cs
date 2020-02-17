@@ -13,6 +13,7 @@ namespace MultiPointInspection.ViewModels
 		private IWindowManager _windowManager;
 		private IEventAggregator _eventAggregator;
 
+		
 		#endregion
 
 		#region - Constructors

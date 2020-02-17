@@ -1,19 +1,13 @@
-﻿using DataModels.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+using DataModels.Models;
 
 namespace DataModels
 {
-    public class Inspection : BaseInspectionModel
+    public class Inspection
     {
         #region - Fields
-        public VehicleData Vehicle { get; set; }
-
-        //public List<Component> Components { get; set; }
+        public List<Inspect> InspectComponents { get; set; }
         #endregion
 
         #region - Constructors
@@ -21,20 +15,7 @@ namespace DataModels
         #endregion
 
         #region - Methods
-        public void ReadJson(string path)
-        {
-            //JsonSerializerSettings settings = new JsonSerializerSettings()
-            //{
-            //    ObjectCreationHandling.
-            //}
-            JsonSerializer serializer = JsonSerializer.Create();
-            serializer.
-        }
 
-        public void WriteJson(string path)
-        {
-            JsonConvert.SerializeObject(Components);
-        }
         #endregion
 
         #region - Properties

@@ -36,4 +36,20 @@ namespace DataModels.Enums
         InProgress,
         Completed
     }
+
+    public enum InspectionCategory
+    {
+        Lighting = 1,
+        Interior = 2,
+        UnderHoodFluids = 3,
+        UnderHoodComponents = 4,
+        Tires = 5,
+        Brakes = 6,
+        DrivetrainFluids = 7,
+        UnderVehicle = 8,
+        FluidLeaks = 9,
+        Time_Mileage = 10,
+
+        NA = 0
+    }
 }

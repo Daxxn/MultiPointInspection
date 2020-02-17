@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using DataModels;
+using DataModels.Models;
 using MultiPointInspection.Models;
 using System;
 using System.Collections.Generic;
@@ -28,72 +29,115 @@ namespace MultiPointInspection.ViewModels
 
             RepairOrderList = new BindableCollection<RepairOrder>();
 
-            #region TESTING
-            RepairOrderList = new BindableCollection<RepairOrder>() {
+            #region TESTING 1
+            //RepairOrderList = new BindableCollection<RepairOrder>() {
+            //    new RepairOrder()
+            //    {
+            //        RepairOrderNumber = 123456,
+            //        Vehicle = new VehicleData()
+            //        {
+            //            VIN = "Test VIN 1",
+            //            Year = 2018,
+            //            Make = "Toyota",
+            //            Model = "RAV4"
+            //        },
+            //        Inspection = new Inspection()
+            //        {
+            //            InspectComponents = new List<Inspect>()
+            //            {
+            //                new Inspect("Brakes"),
+            //                new Inspect("Tread Depth"),
+            //                new Inspect("Engine Filter")
+            //            },
+
+            //       },
+            //       Status = new RepairStatus()
+            //       {
+            //           Name = "In Progress",
+            //           ID = 1
+            //       },
+            //       Repairs = new List<RepairAction>()
+            //       {
+            //           new RepairAction()
+            //           {
+            //               RepairName = "Oil change and tire rotate.",
+            //               ActionID = 10,
+            //               Description = "Replace engine oil and filter, rotate tires, check tire pressure, and complete multipoint inspection."
+            //           }
+            //        }
+            //    },
+
+            //    new RepairOrder()
+            //    {
+            //        RepairOrderNumber = 123457,
+            //        Vehicle = new VehicleData()
+            //        {
+            //            VIN = "Test VIN 2",
+            //            Year = 2009,
+            //            Make = "Toyota",
+            //            Model = "Camry",
+            //            Color = "grey"
+            //        },
+            //        Inspection = new Inspection()
+            //        {
+            //            InspectComponents = new List<Inspect>()
+            //        },
+            //        Repairs = new List<RepairAction>()
+            //        {
+            //            new RepairAction()
+            //            {
+            //                RepairName = "Replace front brake pads, resurface rotors.",
+            //                ActionID = 20,
+            //                Description = "Replace front brake pads, grease slide pins, replace brake hardware, resurface rotors."
+            //            }
+            //        },
+            //        Status = new RepairStatus()
+            //        {
+            //            Name = "Tech Working on vehicle",
+            //            ID = 2
+            //        }
+            //    }
+            //};
+            #endregion
+
+            #region TESTING 2
+            RepairOrderList = new BindableCollection<RepairOrder>()
+            {
                 new RepairOrder()
                 {
-                    RepairOrderNumber = 123456,
+                    RepairOrderNumber = 423312,
                     Vehicle = new VehicleData()
                     {
-                        VIN = "Test VIN 1",
+                        VIN = "Testing VIN",
                         Year = 2018,
                         Make = "Toyota",
-                        Model = "RAV4"
-                    },
-                    Inspection = new Inspection()
-                    {
-                        Components = new List<Component>()
-                        {
-                            new Component("Brakes"),
-                            new Component("Tread Depth"),
-                            new Component("Engine Filter")
-                        },
-
-                   },
-                   Status = new RepairStatus()
-                   {
-                       Name = "In Progress",
-                       ID = 1
-                   },
-                   Repairs = new List<RepairAction>()
-                   {
-                       new RepairAction()
-                       {
-                           RepairName = "Oil change and tire rotate.",
-                           ActionID = 10,
-                           Description = "Replace engine oil and filter, rotate tires, check tire pressure, and complete multipoint inspection."
-                       }
-                    }
-                },
-
-                new RepairOrder()
-                {
-                    RepairOrderNumber = 123457,
-                    Vehicle = new VehicleData()
-                    {
-                        VIN = "Test VIN 2",
-                        Year = 2009,
-                        Make = "Toyota",
                         Model = "Camry",
-                        Color = "grey"
-                    },
-                    Inspection = new Inspection()
-                    {
-                        Components = new List<Component>()
+                        Color = "Red"
                     },
                     Repairs = new List<RepairAction>()
                     {
                         new RepairAction()
                         {
-                            RepairName = "Replace front brake pads, resurface rotors.",
-                            ActionID = 20,
-                            Description = "Replace front brake pads, grease slide pins, replace brake hardware, resurface rotors."
+                            RepairName = "Oil Change",
+                            Description = "Complete Oil Change",
+                            ActionID = 10
                         }
                     },
-                    Status = new RepairStatus()
+                    Inspection = new Inspection()
                     {
-                        Name = "Tech Working on vehicle",
-                        ID = 2
+                        InspectComponents = new List<Inspect>()
+                        {
+                            new Inspect("Warning Lights"),
+                            new Inspect("Headlights Low Beam"),
+                            new Inspect("Headlights High Beam"),
+                            new Inspect("Foglights"),
+                            new Inspect("Taillights"),
+                            new Inspect("Turn Signal Lights"),
+                            new Inspect("Brake Lights"),
+                            new Inspect("Hazard Lights"),
+                            new Inspect("Reverse Lights"),
+                            new Inspect("Horn")
+                        }
                     }
                 }
             };
