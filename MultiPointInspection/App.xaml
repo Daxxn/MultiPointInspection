@@ -5,6 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionaries/Colors.xaml"/>
                 <ResourceDictionary Source="ResourceDictionaries/Styles.xaml"/>
                 <ResourceDictionary>
                     <local:Bootstrapper x:Key="Bootstrapper" />

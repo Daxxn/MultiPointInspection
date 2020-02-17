@@ -28,43 +28,44 @@ namespace MultiPointInspection.ViewModels
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
 
-            MainModel = new MainViewModel(windowManager, eventAggregator);
-            CurrentROModel = new CurrentROViewModel(windowManager, eventAggregator);
-            InspectionModel = new InspectionViewModel(windowManager, eventAggregator);
-            CreateRepairOrderModel = new CreateRepairOrderViewModel(windowManager, eventAggregator);
+            MainViewModel = new MainViewModel(windowManager, eventAggregator);
+            CurrentROViewModel = new CurrentROViewModel(windowManager, eventAggregator);
+            InspectionViewModel = new InspectionViewModel(windowManager, eventAggregator);
+            CreateRepairOrderViewModel = new CreateRepairOrderViewModel(windowManager, eventAggregator);
 
-            ActivateItem(MainModel);
+            ActivateItem(MainViewModel);
         }
         #endregion
 
         #region - Methods
         #region Tabs
-        public void TabMainView()
+        public void TabMainView(  )
         {
-            ActivateItem(MainModel);
+            ActivateItem(MainViewModel);
         }
 
-        public void TabCurrentView()
+        public void TabCurrentView(  )
         {
-            _eventAggregator.PublishOnUIThread(new ViewCurrentROTabEvent(MainModel.SelectedRepairOrder));
-            ActivateItem(CurrentROModel);
+            _eventAggregator.PublishOnUIThread(new ViewCurrentROTabEvent(MainViewModel.SelectedRepairOrder));
+            ActivateItem(CurrentROViewModel);
         }
 
-        public void TabInspectionView()
+        public void TabInspectionView(  )
         {
-            _eventAggregator.PublishOnUIThread(new ViewInspectionTabEvent(MainModel.SelectedRepairOrder));
-            ActivateItem(InspectionModel);
+            _eventAggregator.PublishOnUIThread(new ViewInspectionTabEvent(MainViewModel.SelectedRepairOrder));
+            ActivateItem(InspectionViewModel);
         }
 
         public void CreateRO(  )
         {
-            _windowManager.ShowWindow(CreateRepairOrderModel);
+            CreateRepairOrderViewModel.Reset();
+            _windowManager.ShowWindow(CreateRepairOrderViewModel);
         }
         #endregion
         #endregion
 
         #region - Properties
-        public MainViewModel MainModel
+        public MainViewModel MainViewModel
         {
             get { return _mainViewModel; }
             set
@@ -73,7 +74,7 @@ namespace MultiPointInspection.ViewModels
             }
         }
 
-        public CurrentROViewModel CurrentROModel
+        public CurrentROViewModel CurrentROViewModel
         {
             get { return _currentROViewModel; }
             set
@@ -82,7 +83,7 @@ namespace MultiPointInspection.ViewModels
             }
         }
 
-        public InspectionViewModel InspectionModel
+        public InspectionViewModel InspectionViewModel
         {
             get { return _inspectionViewModel; }
             set
@@ -91,7 +92,7 @@ namespace MultiPointInspection.ViewModels
             }
         }
 
-        public CreateRepairOrderViewModel CreateRepairOrderModel
+        public CreateRepairOrderViewModel CreateRepairOrderViewModel
         {
             get { return _createRepairOrderViewModel; }
             set

@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Enums\SelectedTab.cs" />
+    <Compile Include="EventModels\CreateROEvent.cs" />
     <Compile Include="EventModels\ViewCurrentROTabEvent.cs" />
     <Compile Include="EventModels\ViewInspectionTabEvent.cs" />
     <Compile Include="Models\RepairOrderModel.cs" />
@@ -97,6 +98,8 @@
     <Compile Include="ViewModels\CurrentROViewModel.cs" />
     <Compile Include="ViewModels\InspectionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\NewRepairsViewModel.cs" />
+    <Compile Include="ViewModels\NewVehicleDataViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\CreateRepairOrderView.xaml.cs">
       <DependentUpon>CreateRepairOrderView.xaml</DependentUpon>
@@ -109,6 +112,12 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewRepairsView.xaml.cs">
+      <DependentUpon>NewRepairsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewVehicleDataView.xaml.cs">
+      <DependentUpon>NewVehicleDataView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
@@ -154,6 +163,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ResourceDictionaries\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceDictionaries\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,6 +184,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewRepairsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewVehicleDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

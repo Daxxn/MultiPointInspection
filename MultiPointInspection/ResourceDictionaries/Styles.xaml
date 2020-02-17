@@ -18,11 +18,19 @@
         <Setter Property="Padding" Value="4,0,4,0"/>
     </Style>
 
-    <Style TargetType="Border" x:Key="key">
-        <Setter Property="BorderBrush" Value="white"/>
+    <Style TargetType="Border" x:Key="CreateRO_Partition">
+        <Setter Property="BorderBrush" Value="{StaticResource Border_Color_1}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Margin" Value="2"/>
     </Style>
 
     <Style TargetType="TextBlock" x:Key="CurrROView_Header">
         <Setter Property="Padding" Value="0,0,2,1"/>
+    </Style>
+
+    <Style TargetType="DataGridColumnHeader" x:Key="IDNumber">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Background" Value="AliceBlue"/>
     </Style>
 </ResourceDictionary>

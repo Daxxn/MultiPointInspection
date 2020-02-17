@@ -17,7 +17,6 @@ namespace DataModels
         #endregion
 
         #region - Constructors
-
         #endregion
 
         #region - Methods

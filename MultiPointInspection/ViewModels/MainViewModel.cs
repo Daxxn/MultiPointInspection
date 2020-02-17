@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using DataModels;
 using DataModels.Models;
+using MultiPointInspection.EventModels;
 using MultiPointInspection.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MultiPointInspection.ViewModels
 {
-    public class MainViewModel : Screen
+    public class MainViewModel : Screen, IHandle<CreateROEvent>
 	{
         #region - Fields & Properties
         private IWindowManager _windowManager;
@@ -147,6 +148,13 @@ namespace MultiPointInspection.ViewModels
 
         #region - Methods
 
+
+        #region Event Handles
+        public void Handle( CreateROEvent message )
+        {
+            RepairOrderList.Add(message.RO);
+        } 
+        #endregion
         #endregion
 
         #region - Full Properties
@@ -169,6 +177,8 @@ namespace MultiPointInspection.ViewModels
 				NotifyOfPropertyChange(() => SelectedRepairOrder);
 			}
 		}
-		#endregion
-	}
+
+        
+        #endregion
+    }
 }
