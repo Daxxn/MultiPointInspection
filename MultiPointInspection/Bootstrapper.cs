@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
 using DataModels.Json;
+using JsonControlLib;
 using MultiPointInspection.ViewModels;
 
 namespace MultiPointInspection

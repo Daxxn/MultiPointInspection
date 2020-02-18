@@ -10,6 +10,7 @@ using DataModels.Json;
 using DataModels.Models;
 using DataModels.Models.Enums;
 using DataModels.Models.Interfaces;
+using JsonControlLib;
 using MultiPointInspection.EventModels;
 
 namespace MultiPointInspection.ViewModels

@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{01D1B4DF-0F68-45A0-8FFE-71D4FA28A25A}</ProjectGuid>
+    <ProjectGuid>{1D553D02-F77D-4092-A033-9C7CC0B81A16}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TemplateLibrary</RootNamespace>
-    <AssemblyName>TemplateLibrary</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>VINDecoderLib</RootNamespace>
+    <AssemblyName>VINDecoderLib</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -41,8 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VINController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModelTemplate.cs" />
+    <Compile Include="VINJsonModel.cs" />
+    <Compile Include="VINJsonResultModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\APIControlLib\APIControlLib.csproj">
+      <Project>{63af8de7-a9b2-4227-951e-e1da897671d7}</Project>
+      <Name>APIControlLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JsonControlLib\JsonControlLib.csproj">
+      <Project>{2d8d276f-0263-4e68-9c33-fb9c1503ea3b}</Project>
+      <Name>JsonControlLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

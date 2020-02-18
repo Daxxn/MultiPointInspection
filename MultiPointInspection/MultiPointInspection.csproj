@@ -216,6 +216,10 @@
       <Project>{00481B8D-37E3-457F-BA6B-FC308B2F8126}</Project>
       <Name>DataModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JsonControlLib\JsonControlLib.csproj">
+      <Project>{2d8d276f-0263-4e68-9c33-fb9c1503ea3b}</Project>
+      <Name>JsonControlLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
