@@ -19,6 +19,8 @@ namespace MultiPointInspection.ViewModels
         private CurrentROViewModel _currentROViewModel;
         private InspectionViewModel _inspectionViewModel;
         private CreateRepairOrderViewModel _createRepairOrderViewModel;
+
+        private int _selectedView = 0;
         #endregion
 
         #region - Constructors
@@ -42,18 +44,21 @@ namespace MultiPointInspection.ViewModels
         public void TabMainView(  )
         {
             ActivateItem(MainViewModel);
+            SelectedView = 0;
         }
 
         public void TabCurrentView(  )
         {
             _eventAggregator.PublishOnUIThread(new ViewCurrentROTabEvent(MainViewModel.SelectedRepairOrder));
             ActivateItem(CurrentROViewModel);
+            SelectedView = 1;
         }
 
         public void TabInspectionView(  )
         {
             _eventAggregator.PublishOnUIThread(new ViewInspectionTabEvent(MainViewModel.SelectedRepairOrder));
             ActivateItem(InspectionViewModel);
+            SelectedView = 2;
         }
 
         public void CreateRO(  )
@@ -98,6 +103,23 @@ namespace MultiPointInspection.ViewModels
             set
             {
                 _createRepairOrderViewModel = value;
+            }
+        }
+        public int SelectedView
+        {
+            get { return _selectedView; }
+            set
+            {
+                if (value >= 0 && value <= 2)
+                {
+                    _selectedView = value;
+                }
+                else
+                {
+                    _selectedView = 0;
+                    throw new Exception("Selected view index out of range.");
+                }
+                NotifyOfPropertyChange(( ) => SelectedView);
             }
         }
         #endregion

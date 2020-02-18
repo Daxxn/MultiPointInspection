@@ -3,5 +3,7 @@
                     xmlns:local="clr-namespace:MultiPointInspection">
 
     <SolidColorBrush x:Key="Border_Color_1" Color="#FF689CF7"/>
-
+    <SolidColorBrush x:Key="TabBackground_Rest" Color="#FFA1D3F5"/>
+    <SolidColorBrush x:Key="TabBackground_Selected" Color="#FF75BFF1"/>
+    <SolidColorBrush x:Key="MenuBackground" Color="#FFC0D3DA"/>
 </ResourceDictionary>

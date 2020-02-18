@@ -20,6 +20,8 @@ namespace MultiPointInspection.ViewModels
         private IWindowManager _windowManager;
         private IEventAggregator _eventAggregator;
 
+        private AddInspectElementViewModel AddInspectElement { get; set; }
+
         private RepairOrder _currentRepairOrder;
 
         public Inspection InspectionData { get; set; }
@@ -39,7 +41,7 @@ namespace MultiPointInspection.ViewModels
             CurrentInspection = new Inspection();
             CurrentInspectionData = new BindableCollection<Inspect>();
             #region Testing ONLY
-            InspectionData = new Inspection()
+            CurrentInspection = new Inspection()
             {
                 Name = "Test",
                 InspectionData = new List<Inspect>()
@@ -73,6 +75,8 @@ namespace MultiPointInspection.ViewModels
                     },
                 }
             };
+
+            CurrentInspectionData = new BindableCollection<Inspect>( CurrentInspection.InspectionData );
             #endregion
         }
         #endregion
@@ -88,6 +92,19 @@ namespace MultiPointInspection.ViewModels
             CurrentInspection = JsonController.OpenJsonFile<Inspection>(Properties.Settings.Default.DefaultInspectionFolder, FileName);
             CurrentInspectionData = new BindableCollection<Inspect>(CurrentInspection.InspectionData);
             FileName = CurrentInspection.Name;
+        }
+        public void AddInspection(  )
+        {
+            AddInspectElement = new AddInspectElementViewModel(_windowManager, _eventAggregator);
+            _windowManager.ShowDialog(AddInspectElement);
+            Inspect temp = new Inspect()
+            {
+
+            };
+        }
+        public void RemoveInspection(  )
+        {
+            // Probably not possible to remove a selected item??
         }
         public void CompleteInspection(  )
         {

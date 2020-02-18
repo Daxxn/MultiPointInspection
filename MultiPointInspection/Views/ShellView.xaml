@@ -14,7 +14,7 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<Menu Grid.Row="0">
+        <Menu Grid.Row="0" Style="{StaticResource Menu_Base}">
             <MenuItem Header="File">
                 <MenuItem Header="Save"/>
             </MenuItem>
@@ -23,9 +23,59 @@
 
 		<StackPanel Orientation="Horizontal"
 					Grid.Row="1">
-			<Button x:Name="TabMainView" >Repair Orders</Button>
-			<Button x:Name="TabCurrentView">Current</Button>
-			<Button x:Name="TabInspectionView" Style="{StaticResource Tab_Base}">Inspection</Button>
+			<Button x:Name="TabMainView">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource TabBackground_Rest}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=SelectedView}" Value="0">
+                                <Setter Property="Background" Value="{StaticResource TabBackground_Selected}"/>
+                            </DataTrigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="FontWeight" Value="DemiBold"/>
+                                <Setter Property="Padding" Value="6"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                Repair Orders
+            </Button>
+
+            <Button x:Name="TabCurrentView">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource TabBackground_Rest}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=SelectedView}" Value="1">
+                                <Setter Property="Background" Value="{StaticResource TabBackground_Selected}"/>
+                            </DataTrigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="FontWeight" Value="DemiBold"/>
+                                <Setter Property="Padding" Value="6"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            Current
+            </Button>
+
+            <Button x:Name="TabInspectionView">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource TabBackground_Rest}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=SelectedView}" Value="2">
+                                <Setter Property="Background" Value="{StaticResource TabBackground_Selected}"/>
+                            </DataTrigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="FontWeight" Value="DemiBold"/>
+                                <Setter Property="Padding" Value="6"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                Inspection
+            </Button>
 		</StackPanel>
 
 		<ContentControl x:Name="ActiveItem" Grid.Row="2"/>

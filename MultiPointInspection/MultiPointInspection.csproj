@@ -97,6 +97,7 @@
     <Compile Include="ValueConverters\BoolToColorConverter.cs" />
     <Compile Include="ValueConverters\BoolToVisibleConverter.cs" />
     <Compile Include="ValueConverters\EnumDisplayConverter.cs" />
+    <Compile Include="ViewModels\AddInspectElementViewModel.cs" />
     <Compile Include="ViewModels\CreateRepairOrderViewModel.cs" />
     <Compile Include="ViewModels\CurrentROViewModel.cs" />
     <Compile Include="ViewModels\InspectionViewModel.cs" />
@@ -104,6 +105,9 @@
     <Compile Include="ViewModels\NewRepairsViewModel.cs" />
     <Compile Include="ViewModels\NewVehicleDataViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Views\AddInspectElementView.xaml.cs">
+      <DependentUpon>AddInspectElementView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateRepairOrderView.xaml.cs">
       <DependentUpon>CreateRepairOrderView.xaml</DependentUpon>
     </Compile>
@@ -171,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceDictionaries\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddInspectElementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
