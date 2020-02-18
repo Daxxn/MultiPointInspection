@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using DataModels;
+using DataModels.Models;
 using MultiPointInspection.EventModels;
 using System;
 using System.Collections.Generic;

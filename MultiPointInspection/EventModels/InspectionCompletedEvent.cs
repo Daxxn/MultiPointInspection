@@ -1,19 +1,23 @@
-﻿using System;
+﻿using DataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataModels.Json
+namespace MultiPointInspection.EventModels
 {
-    public class InspectionModel<T>
+    public class InspectionCompletedEvent
 	{
 		#region - Fields & Properties
-
+		public Inspection Inspection { get; set; }
 		#endregion
 
 		#region - Constructors
-		public InspectionModel( ) { }
+		public InspectionCompletedEvent( Inspection inspection )
+		{
+			Inspection = inspection;
+		}
 		#endregion
 
 		#region - Methods

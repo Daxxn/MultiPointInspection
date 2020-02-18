@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
+using DataModels.Json;
 using MultiPointInspection.ViewModels;
 
 namespace MultiPointInspection
@@ -21,6 +22,7 @@ namespace MultiPointInspection
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             DisplayRootViewFor<ShellViewModel>();
+            Properties.Settings.Default.DefaultInspectionFolder = JsonController.GetJsonFolder();
         }
 
         protected override void Configure()
@@ -60,6 +62,7 @@ namespace MultiPointInspection
 
         protected override void OnUnhandledException(Object sender, DispatcherUnhandledExceptionEventArgs e)
         {
+            MessageBox.Show(sender.ToString());
             base.OnUnhandledException(sender, e);
         }
     }

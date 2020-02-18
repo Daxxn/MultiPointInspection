@@ -89,11 +89,14 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Enums\SelectedTab.cs" />
     <Compile Include="EventModels\CreateROEvent.cs" />
+    <Compile Include="EventModels\InspectionCompletedEvent.cs" />
     <Compile Include="EventModels\ViewCurrentROTabEvent.cs" />
     <Compile Include="EventModels\ViewInspectionTabEvent.cs" />
     <Compile Include="Models\RepairOrderModel.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="ValueConverters\BoolToColorConverter.cs" />
     <Compile Include="ValueConverters\BoolToVisibleConverter.cs" />
+    <Compile Include="ValueConverters\EnumDisplayConverter.cs" />
     <Compile Include="ViewModels\CreateRepairOrderViewModel.cs" />
     <Compile Include="ViewModels\CurrentROViewModel.cs" />
     <Compile Include="ViewModels\InspectionViewModel.cs" />

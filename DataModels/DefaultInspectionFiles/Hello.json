@@ -1,0 +1,29 @@
+{
+  "Name": "Test",
+  "InspectionData": [
+    {
+      "Title": "Front Brake pads",
+      "Category": 6,
+      "Description": "Measure front brake pad thickness",
+      "Result": 0,
+      "Measurement": 10,
+      "Specs": null
+    },
+    {
+      "Title": "Rear Brake pads",
+      "Category": 6,
+      "Description": "Measure rear brake pad thickness",
+      "Result": 3,
+      "Measurement": 7,
+      "Specs": null
+    },
+    {
+      "Title": "Inspect Headlights",
+      "Category": 1,
+      "Description": "Inspect Headlights for proper operation.",
+      "Result": 0,
+      "Measurement": 7,
+      "Specs": null
+    }
+  ]
+}

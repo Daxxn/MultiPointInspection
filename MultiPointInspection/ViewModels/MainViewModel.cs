@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using DataModels;
 using DataModels.Models;
+using DataModels.Models.Interfaces;
 using MultiPointInspection.EventModels;
 using MultiPointInspection.Models;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MultiPointInspection.ViewModels
 {
-    public class MainViewModel : Screen, IHandle<CreateROEvent>
+    public class MainViewModel : Screen, IHandle<CreateROEvent>, IHandle<InspectionCompletedEvent>
 	{
         #region - Fields & Properties
         private IWindowManager _windowManager;
@@ -126,7 +127,7 @@ namespace MultiPointInspection.ViewModels
                     },
                     Inspection = new Inspection()
                     {
-                        InspectComponents = new List<Inspect>()
+                        InspectionData = new List<Inspect>()
                         {
                             new Inspect("Warning Lights"),
                             new Inspect("Headlights Low Beam"),
@@ -153,7 +154,11 @@ namespace MultiPointInspection.ViewModels
         public void Handle( CreateROEvent message )
         {
             RepairOrderList.Add(message.RO);
-        } 
+        }
+        public void Handle( InspectionCompletedEvent message )
+        {
+            SelectedRepairOrder.Inspection = message.Inspection;
+        }
         #endregion
         #endregion
 

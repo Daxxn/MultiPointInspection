@@ -4,9 +4,103 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:MultiPointInspection.Views"
+			 xmlns:cal="http://www.caliburnproject.org"
 			 mc:Ignorable="d" Background="White"
 			 d:DesignHeight="450" d:DesignWidth="800">
+
 	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<!--Controlls Grid-->
+		<Border Grid.Column="0" Grid.Row="0"
+				BorderBrush="Black" BorderThickness="1" Margin="4">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+
+				<Border Grid.Column="0" Grid.Row="0" Padding="4" Margin="2">
+					<StackPanel Orientation="Horizontal">
+						<Button x:Name="SaveInspection">Save</Button>
+						<Button x:Name="OpenInspection">Open</Button>
+					</StackPanel>
+				</Border>
+
+				<Border Grid.Column="0" Grid.Row="1" Padding="2">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+
+						<TextBlock Grid.Column="0">Inspection Name:</TextBlock>
+						<TextBox x:Name="InspectionData_Name" Grid.Column="1"/>
+					</Grid>
+				</Border>
+
+                <Button x:Name="CompleteInspection" Grid.Column="0" Grid.Row="2">Finish Inspection</Button>
+			</Grid>
+		</Border>
+
+		<TreeView x:Name="InspectionData" Grid.Column="1" BorderThickness="2" Margin="2"
+				  ItemsSource="{Binding Path=InspectionData.InspectionData}">
+			<TreeView.ItemTemplate>
+				<DataTemplate>
+					<Border BorderBrush="AliceBlue" BorderThickness="2" Padding="4">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+
+							<TextBlock Grid.Column="0" Grid.Row="0" Text="Title: "/>
+							<TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=Title}"/>
+
+							<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Description}"/>
+
+							<TextBlock Grid.Column="0" Grid.Row="2">Result:</TextBlock>
+							<TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Path=Result}"/>
+
+                            <TextBlock Grid.Column="0" Grid.Row="3">Measurement:</TextBlock>
+                            <TextBox x:Name="Measurement" Grid.Column="1" Grid.Row="3"/>
+
+                            <!--#region Results Combobox doesnt Work. Need to find another solution. -->
+											<!---->
+							<!--<ComboBox Grid.Column="3" Grid.Row="1" ItemsSource="{Binding Path=ResultValues}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Path=SelectedResult, Mode=TwoWay}"/>-->
+							<!--<Border BorderBrush="Azure" BorderThickness="1" Grid.Column="3" Grid.Row="1">-->
+								
+								<!--<StackPanel Orientation="Horizontal">
+									<CheckBox  cal:Message.Attach="[Event Checked] = [Action InspectionResult($dataContext, 'GOOD', $this)]" />
+									<CheckBox cal:Message.Attach="[Event Checked] = [Action InspectionResult($dataContext, 'FAIR', $executionContext)]" />
+								</StackPanel>-->
+							<!--</Border>-->
+							<!--#endregion-->
+						</Grid>
+					</Border>
+					
+				</DataTemplate>
+			</TreeView.ItemTemplate>
+		</TreeView>
 		
 	</Grid>
 </UserControl>
