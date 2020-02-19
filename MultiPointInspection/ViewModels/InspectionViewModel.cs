@@ -115,10 +115,81 @@ namespace MultiPointInspection.ViewModels
         #endregion
 
         #region Event Messages
-        public void InspectionResult( dynamic box, Result result, ActionExecutionContext data_1 )
+        /// <summary>
+        /// Doesnt work properly. more testing needed. The checkboxes dont update after the selection.
+        /// </summary>
+        public void InspectionResult( Inspect box, Result result, dynamic good, dynamic fair, dynamic normal, dynamic poor, dynamic bad, dynamic na )
         {
-            MessageBox.Show(box.ToString() + result);
+            if (result == Result.Good)
+            {
+                good = true;
+
+                fair = false;
+                normal = false;
+                poor = false;
+                bad = false;
+                na = false;
+            }
+            else if (result == Result.Fair)
+            {
+                good = false;
+
+                fair = true;
+
+                normal = false;
+                poor = false;
+                bad = false;
+                na = false;
+            }
+            else if (result == Result.Normal)
+            {
+                good = false;
+                fair = false;
+
+                normal = true;
+
+                poor = false;
+                bad = false;
+                na = false;
+            }
+            else if (result == Result.Poor)
+            {
+                good = false;
+                fair = false;
+                normal = false;
+
+                poor = true;
+
+                bad = false;
+                na = false;
+            }
+            else if (result == Result.Bad)
+            {
+                good = false;
+                fair = false;
+                normal = false;
+                poor = false;
+
+                bad = true;
+
+                na = false;
+            }
+            else if (result == Result.NA)
+            {
+                good = false;
+                fair = false;
+                normal = false;
+                poor = false;
+                bad = false;
+
+                na = true;
+            }
+
+            box.Result = result;
+            NotifyOfPropertyChange(( ) => box);
+            //MessageBox.Show(box.ToString() + result);
         }
+
         #endregion
         public void Handle(ViewInspectionTabEvent message)
         {
@@ -167,6 +238,8 @@ namespace MultiPointInspection.ViewModels
                 NotifyOfPropertyChange(( ) => CurrentInspectionData);
             }
         }
+
+        
         #endregion
     }
 }

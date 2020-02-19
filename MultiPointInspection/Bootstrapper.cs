@@ -24,6 +24,7 @@ namespace MultiPointInspection
         {
             DisplayRootViewFor<ShellViewModel>();
             Properties.Settings.Default.DefaultInspectionFolder = JsonController.GetJsonFolder();
+            APIControlLib.ApiHelper.InitializeClient();
         }
 
         protected override void Configure()

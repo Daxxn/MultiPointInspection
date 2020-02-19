@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using VINDecoderLib;
 
 namespace MultiPointInspection.ViewModels
 {
@@ -40,9 +41,13 @@ namespace MultiPointInspection.ViewModels
 			ColorInput = null;
 		}
 		#region Buttons
-		public void SearchVIN( )
+		public async Task SearchVIN( )
 		{
-			MessageBox.Show("Not Implemented.\nThis is where the API will be called and parsed.");
+			if (VINInput.Length == 17)
+			{
+				VINJsonModel newVin = await VINController.LoadVIN(VINInput);
+				VINInput = newVin.SearchCriteria;
+			}
 		} 
 		#endregion
 		#endregion

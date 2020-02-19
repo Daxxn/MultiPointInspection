@@ -212,6 +212,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\APIControlLib\APIControlLib.csproj">
+      <Project>{63af8de7-a9b2-4227-951e-e1da897671d7}</Project>
+      <Name>APIControlLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataModels\DataModels.csproj">
       <Project>{00481B8D-37E3-457F-BA6B-FC308B2F8126}</Project>
       <Name>DataModels</Name>
@@ -219,6 +223,10 @@
     <ProjectReference Include="..\JsonControlLib\JsonControlLib.csproj">
       <Project>{2d8d276f-0263-4e68-9c33-fb9c1503ea3b}</Project>
       <Name>JsonControlLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VINDecoderLib\VINDecoderLib.csproj">
+      <Project>{1d553d02-f77d-4092-a033-9c7cc0b81a16}</Project>
+      <Name>VINDecoderLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

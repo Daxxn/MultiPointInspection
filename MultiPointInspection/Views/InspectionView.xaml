@@ -105,13 +105,16 @@
                             <!--#region Results Combobox doesnt Work. Need to find another solution. -->
 											<!---->
                             <!--<ComboBox Grid.Column="3" Grid.Row="1" ItemsSource="{Binding Path=AllResults}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Path=SelectedResult, Mode=TwoWay}"/>-->
-							<!--<Border BorderBrush="Azure" BorderThickness="1" Grid.Column="3" Grid.Row="1">-->
-								
-								<!--<StackPanel Orientation="Horizontal">
-									<CheckBox  cal:Message.Attach="[Event Checked] = [Action InspectionResult($dataContext, 'GOOD', $this)]" />
-									<CheckBox cal:Message.Attach="[Event Checked] = [Action InspectionResult($dataContext, 'FAIR', $executionContext)]" />
-								</StackPanel>-->
-							<!--</Border>-->
+                            <!--<Border BorderBrush="Azure" BorderThickness="1" Grid.Column="3" Grid.Row="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="good" cal:Message.Attach="[Event Checked] = [Action InspectionResult($dataContext, 'GOOD', good, fair, normal, poor, bad, na)]" />
+                                    <CheckBox Name="fair" cal:Message.Attach="[Event Checked] = [Action InspectionResult($dataContext, 'FAIR', good, fair, normal, poor, bad, na)]"/>
+                                    <CheckBox Name="normal" cal:Message.Attach="[Event Checked] = [Action InspectionResult($dataContext, 'NORMAL', good, fair, normal, poor, bad, na)]" />
+                                    <CheckBox Name="poor" cal:Message.Attach="[Event Checked] = [Action InspectionResult($dataContext, 'POOR', good, fair, normal, poor, bad, na)]" />
+                                    <CheckBox Name="bad" cal:Message.Attach="[Event Checked] = [Action InspectionResult($dataContext, 'BAD', good, fair, normal, poor, bad, na)]" />
+                                    <CheckBox Name="na" cal:Message.Attach="[Event Checked] = [Action InspectionResult($dataContext, 'NA', good, fair, normal, poor, bad, na)]" />
+                                </StackPanel>
+							</Border>-->
 							<!--#endregion-->
 						</Grid>
 					</Border>
