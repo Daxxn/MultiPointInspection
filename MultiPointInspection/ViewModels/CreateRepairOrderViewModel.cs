@@ -74,7 +74,7 @@ namespace MultiPointInspection.ViewModels
 				Vehicle = new VehicleData()
 				{
 					VIN = NewVehicleDataViewModel.VINInput,
-					Year = NewVehicleDataViewModel.YearInput,
+					ModelYear = NewVehicleDataViewModel.YearInput,
 					Make = NewVehicleDataViewModel.MakeInput,
 					Model = NewVehicleDataViewModel.ModelInput
 				},

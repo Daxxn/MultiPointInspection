@@ -10,9 +10,9 @@ namespace VINDecoderLib
 	{
 		#region - Fields & Properties
 		public string Value { get; set; }
-		public string ValueId { get; set; }
+		public string ValueID { get; set; }
 		public string Variable { get; set; }
-		public int VariableId { get; set; }
+		public int VariableID { get; set; }
 		#endregion
 
 		#region - Constructors

@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace MultiPointInspection.ViewModels
         private string _makeInput;
         private string _modelInput;
         private string _colorInput;
+
+		private VehicleData _vehicle;
         #endregion
 
         #region - Constructors
@@ -45,10 +48,24 @@ namespace MultiPointInspection.ViewModels
 		{
 			if (VINInput.Length == 17)
 			{
-				VINJsonModel newVin = await VINController.LoadVIN(VINInput);
-				VINInput = newVin.SearchCriteria;
+				VINJsonModel inputVINData = await VINController.LoadVIN(VINInput);
+				Vehicle.VIN = inputVINData.SearchCriteria;
+				VINParser parser = new VINParser();
+				parser.VINData = inputVINData;
+				Vehicle.RawData = parser.ParseVINResults();
+				Vehicle.ConvertRawData();
 			}
-		} 
+		}
+
+		public void ParseVIN( VINJsonModel vinData )
+		{
+			VINParser parser = new VINParser()
+			{
+				VINData = vinData
+			};
+			Vehicle.RawData = parser.ParseVINResults();
+			Vehicle.ConvertRawData();
+		}
 		#endregion
 		#endregion
 
@@ -101,6 +118,15 @@ namespace MultiPointInspection.ViewModels
 				_colorInput = value;
 				NotifyOfPropertyChange(( ) => ColorInput);
 
+			}
+		}
+
+		public VehicleData Vehicle
+		{
+			get { return _vehicle; }
+			set
+			{
+				_vehicle = value;
 			}
 		}
 		#endregion

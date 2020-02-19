@@ -111,7 +111,7 @@ namespace MultiPointInspection.ViewModels
                     Vehicle = new VehicleData()
                     {
                         VIN = "Testing VIN",
-                        Year = 2018,
+                        ModelYear = 2018,
                         Make = "Toyota",
                         Model = "Camry",
                         Color = "Red"
