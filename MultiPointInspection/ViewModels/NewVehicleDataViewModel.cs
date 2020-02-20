@@ -23,6 +23,9 @@ namespace MultiPointInspection.ViewModels
         private string _colorInput;
 
 		private VehicleData _vehicle;
+
+		private int _errorCode = 10;
+		private bool _notSearching = true;
         #endregion
 
         #region - Constructors
@@ -31,12 +34,14 @@ namespace MultiPointInspection.ViewModels
             _windowManager = windowManager;
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
+			Vehicle = new VehicleData();
         }
 		#endregion
 
 		#region - Methods
 		public void Reset(  )
 		{
+			Vehicle = new VehicleData();
 			VINInput = null;
 			YearInput = 0;
 			MakeInput = null;
@@ -44,16 +49,25 @@ namespace MultiPointInspection.ViewModels
 			ColorInput = null;
 		}
 		#region Buttons
-		public async Task SearchVIN( )
+		public async void SearchVIN( )
 		{
+			// Dads VIN : KMHD84LF3HU153568
+			// Jasons VIN : JHMGE8H52DC071704
+			// Jasons BAD VIN : JHZGE8H52DC071704
 			if (VINInput.Length == 17)
 			{
+				NotSearching = false;
 				VINJsonModel inputVINData = await VINController.LoadVIN(VINInput);
-				Vehicle.VIN = inputVINData.SearchCriteria;
+				//Vehicle.VIN = inputVINData.SearchCriteria;
+				ErrorCode = ParseError(inputVINData.Results[ 4 ].Value);
 				VINParser parser = new VINParser();
 				parser.VINData = inputVINData;
 				Vehicle.RawData = parser.ParseVINResults();
 				Vehicle.ConvertRawData();
+
+				UpdateVehicle();
+
+				NotSearching = true;
 			}
 		}
 
@@ -65,6 +79,20 @@ namespace MultiPointInspection.ViewModels
 			};
 			Vehicle.RawData = parser.ParseVINResults();
 			Vehicle.ConvertRawData();
+		}
+
+		public int ParseError( string errorVariable )
+		{
+			bool success = Int32.TryParse(errorVariable[0].ToString(), out int errorOut);
+			return (success) ? errorOut : 100;
+		}
+
+		private void UpdateVehicle(  )
+		{
+			YearInput = Vehicle.ModelYear;
+			MakeInput = Vehicle.Make;
+			ModelInput = Vehicle.Model;
+			ColorInput = Vehicle.Color;
 		}
 		#endregion
 		#endregion
@@ -127,6 +155,26 @@ namespace MultiPointInspection.ViewModels
 			set
 			{
 				_vehicle = value;
+			}
+		}
+
+		public int ErrorCode
+		{
+			get { return _errorCode; }
+			set
+			{
+				_errorCode = value;
+				NotifyOfPropertyChange(( ) => ErrorCode);
+			}
+		}
+
+		public bool NotSearching
+		{
+			get { return _notSearching; }
+			set
+			{
+				_notSearching = value;
+				NotifyOfPropertyChange(( ) => NotSearching);
 			}
 		}
 		#endregion
