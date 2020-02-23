@@ -98,13 +98,6 @@ namespace MultiPointInspection.ViewModels
 			return (success) ? errorOut : 100;
 		}
 
-		private void UpdateVehicle(  )
-		{
-			YearInput = Vehicle.ModelYear;
-			MakeInput = Vehicle.Make;
-			ModelInput = Vehicle.Model;
-			ColorInput = Vehicle.Color;
-		}
 		#endregion
 		#endregion
 
