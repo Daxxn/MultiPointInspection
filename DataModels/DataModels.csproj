@@ -57,6 +57,7 @@
     <Compile Include="Models\Inspection.cs" />
     <Compile Include="Models\Interfaces\IInspectionModel.cs" />
     <Compile Include="Models\Enums\Result.cs" />
+    <Compile Include="Models\VehicleCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RepairAction.cs" />
     <Compile Include="Models\RepairOrder.cs" />

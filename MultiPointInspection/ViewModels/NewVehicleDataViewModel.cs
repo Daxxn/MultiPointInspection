@@ -23,6 +23,10 @@ namespace MultiPointInspection.ViewModels
         private string _colorInput;
 
 		private VehicleData _vehicle;
+
+		private int[] _errorCode = new int[] { 10 };
+		private int _errorBackground = 0;
+		private bool _notSearching = true;
         #endregion
 
         #region - Constructors
@@ -31,12 +35,14 @@ namespace MultiPointInspection.ViewModels
             _windowManager = windowManager;
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
+			Vehicle = new VehicleData();
         }
 		#endregion
 
 		#region - Methods
 		public void Reset(  )
 		{
+			Vehicle = new VehicleData();
 			VINInput = null;
 			YearInput = 0;
 			MakeInput = null;
@@ -55,28 +61,49 @@ namespace MultiPointInspection.ViewModels
 		#region Buttons
 		public async void SearchVIN( )
 		{
+			// Dads VIN : KMHD84LF3HU153568
+			// Jasons VIN : JHMGE8H52DC071704
+			// Jasons BAD VIN : JHZGE8H52DC071704
 			if (VINInput.Length == 17)
 			{
-                Vehicle = new VehicleData();
-				VINJsonModel inputVINData = await VINController.LoadVIN(VINInput);
-				Vehicle.VIN = inputVINData.SearchCriteria;
-				VINParser parser = new VINParser();
-				parser.VINData = inputVINData;
-				Vehicle.RawData = parser.ParseVINResults();
-				Vehicle.ConvertRawData();
+				NotSearching = false;
 
-                UpdateVehicle();
+				Vehicle = await VehicleData.RequestVINAsync(VINInput);
+				ErrorCodes = Vehicle.ErrorCode;
+
+				UpdateVehicle();
+
+                #region OLD
+                //VINJsonModel inputVINData = await VINController.LoadVIN(VINInput);
+
+                //ErrorCode = ParseError(inputVINData.Results[ 4 ].Value);
+                //if (ErrorCode == 0)
+                //{
+                //	VINParser parser = new VINParser();
+                //	parser.VINData = inputVINData;
+                //	Vehicle.RawData = parser.ParseVINResults();
+                //	Vehicle.ConvertRawData();
+
+                //	UpdateVehicle();
+                //}
+                #endregion
+
+                NotSearching = true;
 			}
 		}
 
-		public void ParseVIN( VINJsonModel vinData )
+		private int ParseError( string errorVariable )
 		{
-			VINParser parser = new VINParser()
-			{
-				VINData = vinData
-			};
-			Vehicle.RawData = parser.ParseVINResults();
-			Vehicle.ConvertRawData();
+			bool success = Int32.TryParse(errorVariable[0].ToString(), out int errorOut);
+			return (success) ? errorOut : 100;
+		}
+
+		private void UpdateVehicle(  )
+		{
+			YearInput = Vehicle.ModelYear;
+			MakeInput = Vehicle.Make;
+			ModelInput = Vehicle.Model;
+			ColorInput = Vehicle.Color;
 		}
 		#endregion
 		#endregion
@@ -140,6 +167,100 @@ namespace MultiPointInspection.ViewModels
 			{
 				_vehicle = value;
                 NotifyOfPropertyChange(() => Vehicle);
+			}
+		}
+
+		public int[] ErrorCodes
+		{
+			get { return _errorCode; }
+			set
+			{
+				_errorCode = value;
+				NotifyOfPropertyChange(( ) => ErrorCodes);
+				NotifyOfPropertyChange(( ) => ErrorDisplay);
+				NotifyOfPropertyChange(( ) => ErrorBackground);
+			}
+		}
+
+		public string ErrorDisplay
+		{
+			get
+			{
+				string output = "";
+				foreach (var error in ErrorCodes)
+				{
+					if (error == 10)
+					{
+						output += "\n";
+					}
+					else if (error == 0)
+					{
+						output += "No Errors\n";
+					}
+					else if (error == 1)
+					{
+						output += "VIN Checksum didnt match any known VINs in database. Possibly an Off-Road Vehicle.\n";
+					}
+					else if (error == 6)
+					{
+						output += "Incomplete VIN. Some data wont be filled in.\n";
+					}
+					else if (error == 400)
+					{
+						output += "Incorrect Letters entered, such as 'I', 'O', or 'Q'.\n";
+					}
+					else if (error == 7)
+					{
+						output += "Manufacturer is not registered with NHTSA.\n";
+					}
+					else
+					{
+						output += "Unknown Error\n";
+					}
+				}
+				return output;
+			}
+		}
+
+		public int ErrorBackground
+		{
+			get
+			{
+				int output = 0;
+
+				
+				if (ErrorCodes[0] == 10)
+				{
+					return 0;
+				}
+				else if (ErrorCodes[0] == 0)
+				{
+					return 0;
+				}
+				else if (ErrorCodes[0] == 1)
+				{
+					return 1;
+				}
+				else if (ErrorCodes[0] == 6)
+				{
+					return 1;
+				}
+				else if (ErrorCodes[0] == 400)
+				{
+					return 2;
+				}
+				
+				return output;
+			}
+		}
+
+		public bool NotSearching
+		{
+			get { return _notSearching; }
+			set
+			{
+				_notSearching = value;
+				NotifyOfPropertyChange(( ) => NotSearching);
 			}
 		}
 		#endregion

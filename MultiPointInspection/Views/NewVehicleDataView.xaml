@@ -22,6 +22,7 @@
 					<RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
@@ -30,28 +31,46 @@
                     Vehicle Info
                 </TextBlock>
 
-				<TextBlock Grid.Column="0" Grid.Row="1" Padding="4,0,4,0" Margin="2,0,0,0">VIN</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource VehicleData_Title}">VIN</TextBlock>
 				<TextBox x:Name="VINInput" Grid.Column="1" Grid.Row="1" Margin="0,2,0,2"/>
 
 				<Button x:Name="SearchVIN" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
-						Margin="0,2,0,2" >
+						Margin="0,2,0,2" IsEnabled="{Binding Path=NotSearching}">
 					Search VIN
 				</Button>
 
-				<TextBlock Grid.Column="0" Grid.Row="3" Padding="4,0,4,0" Margin="2,0,0,0">Year</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource VehicleData_Title}">Year</TextBlock>
 				<TextBox x:Name="YearInput" Grid.Column="1" Grid.Row="3" Margin="0,2,0,2"/>
 
-				<TextBlock Grid.Column="0" Grid.Row="4" Padding="4,0,4,0" Margin="2,0,0,0">Make</TextBlock>
+				<TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource VehicleData_Title}">Make</TextBlock>
 				<TextBox x:Name="MakeInput" Grid.Column="1" Grid.Row="4" Margin="0,2,0,2"/>
 
-				<TextBlock Grid.Column="0" Grid.Row="5" Padding="4,0,4,0" Margin="2,0,0,0">Model</TextBlock>
+				<TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource VehicleData_Title}">Model</TextBlock>
 				<TextBox x:Name="ModelInput" Grid.Column="1" Grid.Row="5" Margin="0,2,0,2"/>
 
-				<TextBlock Grid.Column="0" Grid.Row="6" Padding="4,0,4,0" Margin="2,0,0,0">Color</TextBlock>
+				<TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource VehicleData_Title}">Color</TextBlock>
 				<TextBox x:Name="ColorInput" Grid.Column="1" Grid.Row="6" Margin="0,2,0,2"/>
 
-                
-			</Grid>
+                <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource VehicleData_Title}">Error</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Path=ErrorDisplay}" Margin="0,2,0,2" TextWrapping="Wrap">
+                    <TextBlock.Style>
+                        <Style>
+                            <Setter Property="TextBlock.Background" Value="{StaticResource ErrorBackground_Normal}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=ErrorBackground}" Value="0">
+                                    <Setter Property="TextBlock.Background" Value="{StaticResource ErrorBackground_Good}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=ErrorBackground}" Value="1">
+                                    <Setter Property="TextBlock.Background" Value="{StaticResource ErrorBackground_Bad}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=ErrorBackground}" Value="2">
+                                    <Setter Property="TextBlock.Background" Value="{StaticResource ErrorBackground_Bad}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
 		</Border>
 	</Grid>
 </UserControl>
