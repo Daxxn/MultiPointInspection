@@ -23,7 +23,7 @@
                       SelectedItem="{Binding Path=SelectedRepairOrder}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="RO" Binding="{Binding Path=RepairOrderNumber}"/>
-                    <DataGridTextColumn Header="Year" Binding="{Binding Path=Vehicle.Year}"/>
+                    <DataGridTextColumn Header="Year" Binding="{Binding Path=Vehicle.ModelYear}"/>
                     <DataGridTextColumn Header="Make" Binding="{Binding Path=Vehicle.Make}"/>
                     <DataGridTextColumn Header="Model" Binding="{Binding Path=Vehicle.Model}"/>
                     <DataGridTextColumn Header="Color" Binding="{Binding Path=Vehicle.Color}"/>

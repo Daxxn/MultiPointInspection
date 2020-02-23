@@ -43,17 +43,29 @@ namespace MultiPointInspection.ViewModels
 			ModelInput = null;
 			ColorInput = null;
 		}
+
+        private void UpdateVehicle()
+        {
+            VINInput = Vehicle.VIN;
+            YearInput = Vehicle.ModelYear;
+            MakeInput = Vehicle.Make;
+            ModelInput = Vehicle.Model;
+            ColorInput = Vehicle.Color;
+        }
 		#region Buttons
-		public async Task SearchVIN( )
+		public async void SearchVIN( )
 		{
 			if (VINInput.Length == 17)
 			{
+                Vehicle = new VehicleData();
 				VINJsonModel inputVINData = await VINController.LoadVIN(VINInput);
 				Vehicle.VIN = inputVINData.SearchCriteria;
 				VINParser parser = new VINParser();
 				parser.VINData = inputVINData;
 				Vehicle.RawData = parser.ParseVINResults();
 				Vehicle.ConvertRawData();
+
+                UpdateVehicle();
 			}
 		}
 
@@ -127,6 +139,7 @@ namespace MultiPointInspection.ViewModels
 			set
 			{
 				_vehicle = value;
+                NotifyOfPropertyChange(() => Vehicle);
 			}
 		}
 		#endregion
