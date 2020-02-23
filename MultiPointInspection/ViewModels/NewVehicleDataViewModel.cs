@@ -24,8 +24,8 @@ namespace MultiPointInspection.ViewModels
 
 		private VehicleData _vehicle;
 
-		private int _errorCode = 10;
-		private string _errorDisplay;
+		private int[] _errorCode = new int[] { 10 };
+		private int _errorBackground = 0;
 		private bool _notSearching = true;
         #endregion
 
@@ -58,31 +58,29 @@ namespace MultiPointInspection.ViewModels
 			if (VINInput.Length == 17)
 			{
 				NotSearching = false;
-				VINJsonModel inputVINData = await VINController.LoadVIN(VINInput);
 
-				ErrorCode = ParseError(inputVINData.Results[ 4 ].Value);
-				if (ErrorCode == 0)
-				{
-					VINParser parser = new VINParser();
-					parser.VINData = inputVINData;
-					Vehicle.RawData = parser.ParseVINResults();
-					Vehicle.ConvertRawData();
+				Vehicle = await VehicleData.RequestVINAsync(VINInput);
+				ErrorCodes = Vehicle.ErrorCode;
 
-					UpdateVehicle();
-				}
+				UpdateVehicle();
 
-				NotSearching = true;
+                #region OLD
+                //VINJsonModel inputVINData = await VINController.LoadVIN(VINInput);
+
+                //ErrorCode = ParseError(inputVINData.Results[ 4 ].Value);
+                //if (ErrorCode == 0)
+                //{
+                //	VINParser parser = new VINParser();
+                //	parser.VINData = inputVINData;
+                //	Vehicle.RawData = parser.ParseVINResults();
+                //	Vehicle.ConvertRawData();
+
+                //	UpdateVehicle();
+                //}
+                #endregion
+
+                NotSearching = true;
 			}
-		}
-
-		public void ParseVIN( VINJsonModel vinData )
-		{
-			VINParser parser = new VINParser()
-			{
-				VINData = vinData
-			};
-			Vehicle.RawData = parser.ParseVINResults();
-			Vehicle.ConvertRawData();
 		}
 
 		private int ParseError( string errorVariable )
@@ -162,14 +160,15 @@ namespace MultiPointInspection.ViewModels
 			}
 		}
 
-		public int ErrorCode
+		public int[] ErrorCodes
 		{
 			get { return _errorCode; }
 			set
 			{
 				_errorCode = value;
-				NotifyOfPropertyChange(( ) => ErrorCode);
+				NotifyOfPropertyChange(( ) => ErrorCodes);
 				NotifyOfPropertyChange(( ) => ErrorDisplay);
+				NotifyOfPropertyChange(( ) => ErrorBackground);
 			}
 		}
 
@@ -177,22 +176,71 @@ namespace MultiPointInspection.ViewModels
 		{
 			get
 			{
-				if (ErrorCode == 10)
+				string output = "";
+				foreach (var error in ErrorCodes)
 				{
-					return "";
+					if (error == 10)
+					{
+						output += "\n";
+					}
+					else if (error == 0)
+					{
+						output += "No Errors\n";
+					}
+					else if (error == 1)
+					{
+						output += "VIN Checksum didnt match any known VINs in database. Possibly an Off-Road Vehicle.\n";
+					}
+					else if (error == 6)
+					{
+						output += "Incomplete VIN. Some data wont be filled in.\n";
+					}
+					else if (error == 400)
+					{
+						output += "Incorrect Letters entered, such as 'I', 'O', or 'Q'.\n";
+					}
+					else if (error == 7)
+					{
+						output += "Manufacturer is not registered with NHTSA.\n";
+					}
+					else
+					{
+						output += "Unknown Error\n";
+					}
 				}
-				else if (ErrorCode == 0)
+				return output;
+			}
+		}
+
+		public int ErrorBackground
+		{
+			get
+			{
+				int output = 0;
+
+				
+				if (ErrorCodes[0] == 10)
 				{
-					return "No Errors";
+					return 0;
 				}
-				else if (ErrorCode == 1)
+				else if (ErrorCodes[0] == 0)
 				{
-					return "VIN Checksum didnt match any known VINs in database.";
+					return 0;
 				}
-				else
+				else if (ErrorCodes[0] == 1)
 				{
-					return "Unknown Error";
+					return 1;
 				}
+				else if (ErrorCodes[0] == 6)
+				{
+					return 1;
+				}
+				else if (ErrorCodes[0] == 400)
+				{
+					return 2;
+				}
+				
+				return output;
 			}
 		}
 

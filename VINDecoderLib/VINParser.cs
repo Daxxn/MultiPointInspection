@@ -9,12 +9,21 @@ namespace VINDecoderLib
     public class VINParser
 	{
 		#region - Fields & Properties
-		public VINJsonModel VINData { get; set; }
+		/// <summary>
+		/// OLD
+		/// </summary>
+		public VINModel VINData { get; set; }
+		/// <summary>
+		/// OLD
+		/// </summary>
 		public List<int> Matches { get; set; } = new List<int>()
 			{
 				191, 26, 27, 28, 29, 31, 34, 38, 39, 75, 77, 5, 14,
 				25, 54, 37, 63, 15, 9, 11, 12, 13, 18, 21, 62, 64, 168
 			};
+		/// <summary>
+		/// OLD
+		/// </summary>
 		public Dictionary<string,string> AllData { get; set; }
 		#endregion
 
@@ -23,32 +32,77 @@ namespace VINDecoderLib
 		#endregion
 
 		#region - Methods
-		public Dictionary<string,string> ParseVINResults( )
+		/// <summary>
+		/// Parses the VIN Model data into a Vehicle Model
+		/// </summary>
+		/// <typeparam name="T">ONLY VehicleModel, just trying to get around a bug. need to fix later.</typeparam>
+		/// <param name="vinData">VINResultModel from the list of results</param>
+		/// <returns>Returns a complete VehicleModel with parsed numbers.</returns>
+		public static T ParseVINModel<T>( VINResultModel vinData ) where T : new()
 		{
-			Dictionary<string,string> output = new Dictionary<string, string>();
-			foreach (var result in VINData.Results)
+			T output = new T();
+
+			var vehicleProps = output.GetType().GetProperties();
+			var vinProps = vinData.GetType().GetProperties();
+
+			foreach (var vinProp in vinProps)
 			{
-				if (Matches.Contains(result.VariableID))
+				foreach (var vehicleProp in vehicleProps)
 				{
-					output.Add(NameCleaner(result.Variable), result.Value);
+					if (vinProp.Name == vehicleProp.Name)
+					{
+						if (vehicleProp.PropertyType == typeof(String))
+						{
+							output.GetType().GetProperty(vehicleProp.Name).SetValue(output, vinProp.GetValue(vinData));
+						}
+						else if (vehicleProp.PropertyType == typeof(Int32))
+						{
+							bool success = Int32.TryParse((string)vinProp.GetValue(vinData), out int intOut);
+
+							if (success)
+							{
+								vehicleProp.SetValue(output, intOut);
+							}
+						}
+						else if (vehicleProp.PropertyType == typeof(Double))
+						{
+							bool success = Double.TryParse((string)vinProp.GetValue(vinData), out double doubleOut);
+
+							if (success)
+							{
+								vehicleProp.SetValue(output, doubleOut);
+							}
+						}
+						else if (vehicleProp.PropertyType == typeof(Int32[]))
+						{
+							vehicleProp.SetValue(output, ParseErrorCode((string)vinProp.GetValue(vinData)));
+						}
+						break;
+					}
 				}
 			}
 
 			return output;
 		}
 
-		private string NameCleaner( string input )
+		public static int[] ParseErrorCode( string input )
 		{
-			string output = "";
-			for (int i = 0; i < input.Length; i++)
+			if (input.Length > 1)
 			{
-				if (Char.IsLetter(input[ i ]))
+				List<int> output = new List<int>();
+				string[] splitOut = input.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+				foreach (var num in splitOut)
 				{
-					output += input[ i ];
+					bool success = Int32.TryParse(num, out int parseOut);
+					output.Add(parseOut);
 				}
+				return output.ToArray();
 			}
-
-			return output;
+			else
+			{
+				Int32.TryParse(input[ 0 ].ToString(), out int parseOut);
+				return new int[] { parseOut };
+			}
 		}
 		#endregion
 

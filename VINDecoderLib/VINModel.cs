@@ -6,34 +6,31 @@ using System.Threading.Tasks;
 
 namespace VINDecoderLib
 {
-    public class VINJsonModel
+    public class VINModel
 	{
 		#region - Fields & Properties
-		public int Count { get; set; }
 		public string Message { get; set; }
 		public string SearchCriteria { get; set; }
-		public List<VINJsonResultModel> Results { get; set; }
+		public List<VINResultModel> Results { get; set; }
 		#endregion
 
 		#region - Constructors
-		public VINJsonModel( ) { }
+		public VINModel( ) { }
 		#endregion
 
 		#region - Methods
 		public override string ToString( )
 		{
-			StringBuilder bd = new StringBuilder();
-
-			bd.AppendLine($"Results Count: {Count}");
-			bd.AppendLine($"Message: {Message}");
-			bd.AppendLine($"VIN: {SearchCriteria}");
+			StringBuilder sb = new StringBuilder("VIN Model :");
+			sb.AppendLine(Message);
+			sb.AppendLine(SearchCriteria);
 
 			foreach (var result in Results)
 			{
-				bd.AppendLine(result.ToString());
+				sb.AppendLine(result.ToString());
 			}
 
-			return bd.ToString();
+			return sb.ToString();
 		}
 		#endregion
 

@@ -52,15 +52,18 @@
 				<TextBox x:Name="ColorInput" Grid.Column="1" Grid.Row="6" Margin="0,2,0,2"/>
 
                 <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource VehicleData_Title}">Error</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Path=ErrorDisplay}" Margin="0,2,0,2">
+                <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Path=ErrorDisplay}" Margin="0,2,0,2" TextWrapping="Wrap">
                     <TextBlock.Style>
                         <Style>
                             <Setter Property="TextBlock.Background" Value="{StaticResource ErrorBackground_Normal}"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=ErrorCode}" Value="0">
+                                <DataTrigger Binding="{Binding Path=ErrorBackground}" Value="0">
                                     <Setter Property="TextBlock.Background" Value="{StaticResource ErrorBackground_Good}"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Path=ErrorCode}" Value="1">
+                                <DataTrigger Binding="{Binding Path=ErrorBackground}" Value="1">
+                                    <Setter Property="TextBlock.Background" Value="{StaticResource ErrorBackground_Bad}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=ErrorBackground}" Value="2">
                                     <Setter Property="TextBlock.Background" Value="{StaticResource ErrorBackground_Bad}"/>
                                 </DataTrigger>
                             </Style.Triggers>
