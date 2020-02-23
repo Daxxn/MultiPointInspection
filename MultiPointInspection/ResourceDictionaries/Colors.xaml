@@ -6,4 +6,26 @@
     <SolidColorBrush x:Key="TabBackground_Rest" Color="#FFA1D3F5"/>
     <SolidColorBrush x:Key="TabBackground_Selected" Color="#FF75BFF1"/>
     <SolidColorBrush x:Key="MenuBackground" Color="#FFC0D3DA"/>
+    <SolidColorBrush x:Key="ErrorBackground_Good" Color="#6FFFA4"/>
+    <SolidColorBrush x:Key="ErrorBackground_Bad" Color="#FF6F82"/>
+    <SolidColorBrush x:Key="ErrorBackground_Normal" Color="#6FCAFF"/>
+
+    <SolidColorBrush x:Key="Blues_1_1" Color="#6a7b9c"/>
+    <SolidColorBrush x:Key="Blues_1_2" Color="#548f8a"/>
+    <SolidColorBrush x:Key="Blues_1_3" Color="#e0e9ff"/>
+    <SolidColorBrush x:Key="Blues_1_4" Color="#5f8796"/>
+    <SolidColorBrush x:Key="Blues_1_5" Color="#a1afce"/>
+
+    <SolidColorBrush x:Key="Blues_2_1" Color="#8bdaff"/>
+    <SolidColorBrush x:Key="Blues_2_1_1" Color="#ccebff"/>
+    <SolidColorBrush x:Key="Blues_2_2" Color="#566dff"/>
+    <SolidColorBrush x:Key="Blues_2_2_1" Color="#c2bcff"/>
+    <SolidColorBrush x:Key="Blues_2_3" Color="#6ec5ff"/>
+    <SolidColorBrush x:Key="Blues_2_3_1" Color="#abd3e6"/>
+
+    <SolidColorBrush x:Key="Tons_Blues_1" Color="#304d9c"/>
+    <SolidColorBrush x:Key="Tons_Blues_2" Color="#219492"/>
+    <SolidColorBrush x:Key="Tons_Blues_3" Color="#839eff"/>
+    <SolidColorBrush x:Key="Tons_Blues_4" Color="#287096"/>
+    <SolidColorBrush x:Key="Tons_Blues_5" Color="#5571ce"/>
 </ResourceDictionary>

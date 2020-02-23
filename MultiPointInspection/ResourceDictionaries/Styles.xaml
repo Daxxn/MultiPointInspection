@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:MultiPointInspection">
 
     <Style TargetType="Menu" x:Key="Menu_Base">
-        <Setter Property="Background" Value="{StaticResource MenuBackground}"/>
+        <Setter Property="Background" Value="{StaticResource Blues_2_1_1}"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="FontWeight" Value="DemiBold"/>
@@ -20,7 +20,7 @@
     </Style>
 
     <Style TargetType="Border" x:Key="CreateRO_Partition">
-        <Setter Property="BorderBrush" Value="{StaticResource Border_Color_1}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Blues_2_2}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="Padding" Value="2"/>
         <Setter Property="Margin" Value="2"/>
@@ -36,7 +36,7 @@
     </Style>
 
     <Style TargetType="Border" x:Key="AddInspectElement_RowDivider">
-        <Setter Property="BorderBrush" Value="{StaticResource Border_Color_1}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Blues_2_2}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Padding" Value="4"/>
         <Setter Property="Margin" Value="4"/>
@@ -45,5 +45,10 @@
                 <Setter Property="Background" Value="AliceBlue"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="VehicleData_Title">
+        <Setter Property="Padding" Value="4,0,4,0"/>
+        <Setter Property="Margin" Value="2,0,0,0"/>
     </Style>
 </ResourceDictionary>
